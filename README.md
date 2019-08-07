@@ -13,32 +13,23 @@ Django - Django is a high-level Python Web framework that encourages rapid devel
 ## Features to be implemented
 
 - [ ] Owner can login.
-- [ ] Owner can register VENDOR.
-- [ ] Owner can register PROPERTY.
-- [ ] Owner can register UNITS on PROPERTY.
-- [ ] Owner can assign VENDOR on PROPERTY.
-- [ ] VENDOR can login
-- [ ] VENDOR can register TENANT.
-- [ ] VENDOR can assign UNIT to TENANT
-- [ ] VENDOR can update UNIT occupation Status.
-- [ ] VENDOR can record Income and Expense on UNIT.
-- [ ] Owner can view payment status of all UNITS.
+- [ ] Owner can register Vendor.
+- [ ] Owner can register Property.
+- [ ] Owner can register Units on Property.
+- [ ] Owner can assign Vendor on Property.
+- [ ] Vendor can login
+- [ ] Vendor can register Tenant.
+- [ ] Vendor can assign Unit to Tenant
+- [ ] Vendor can update Unit occupation Status.
+- [ ] Vendor can record Income and Expense on Unit.
+- [ ] Owner can view payment status of all Units.
 - [ ] Owner can get alerts of all overdue payment by 5th each month
 - [ ] Owner can get alerts of all overdue payment over 2 consecutive months.
-- [ ] Owner can get report of Tenants list and their UNITS
+- [ ] Owner can get report of Tenants list and their Units
 - [ ] Owner can get report of Units Status (OCCUPIED|VACANT|CLOSED)
-- [ ] Owner can get report of all INCOME and EXPENSES each month of all UNITS.
-- [ ] Owner can get report of INCOME and EXPENSES each month of each UNITS.
+- [ ] Owner can get report of all Income and Expenses each month of all Units.
+- [ ] Owner can get report of Income and Expenses each month of each Units.
 
-### Build
-
-``` bash
-    virtualenv venv
-```
-
-``` bash
-    source venv/bin/activate
-```
 
 ### Run
 
