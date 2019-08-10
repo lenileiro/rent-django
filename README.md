@@ -7,7 +7,7 @@
 
 ```
 Python - Programming Language
-Django - Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+Django - Django is a high-level Python Web framework.
 ```
 
 ## Features to be implemented

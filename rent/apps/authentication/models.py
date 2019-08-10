@@ -12,13 +12,16 @@ from django.db import models
 
 class UserManager(BaseUserManager):
     
-    def create_user(self, name, email, password=None):
+    def create_user(self, name=None, email=None, password=None):
         """Create and return a `User` with an email, username and password."""
         if name is None:
-            raise TypeError('Users must have a name.')
+            raise TypeError('User must have a name.')
 
         if email is None:
-            raise TypeError('Users must have an email address.')
+            raise TypeError('User must have an email address.')
+
+        if password is None:
+            raise TypeError('User Account must have a password.')
 
         Utils.validate_email(email)
 
@@ -31,7 +34,7 @@ class UserManager(BaseUserManager):
     
     def create_superuser(self, name, email, password):
         if password is None:
-            raise TypeError('Superusers must have a password.')
+            raise TypeError('Superuser must have a password.')
 
         user = self.create_user(name, email, password)
         user.is_superuser = True
@@ -41,9 +44,6 @@ class UserManager(BaseUserManager):
         return user
 
     def create_owneruser(self, name, email, password):
-        
-        if password is None:
-            raise TypeError('Owner Account must have a password.')
 
         user = self.create_user(name, email, password)
         user.is_owner = True
@@ -52,8 +52,6 @@ class UserManager(BaseUserManager):
         return user
     
     def create_vendoruser(self, name, email, password, phone=None, contactperson=None):
-        if password is None:
-            raise TypeError('Vendor Account must have a password.')
         if phone is None:
             raise TypeError('Vendor Account must have a phone number.')
         if contactperson is None:

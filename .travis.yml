@@ -1,0 +1,21 @@
+language: python
+
+python:
+    - "3.6"
+
+services: 
+    - postgresql
+
+env:
+    - SECRET_KEY='Application secret key'
+    
+install:
+    - pip install -r requirements.txt
+    - pip install coverage
+    - pip install coveralls
+
+script:
+    - coverage run --source='rent/apps' manage.py test && coverage report
+
+after_success:
+    - coveralls
