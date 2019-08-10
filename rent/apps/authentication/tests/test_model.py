@@ -74,7 +74,7 @@ class AuthTestBasicUserOperation(TestCase):
 
 class AuthTestSuperUser(TestCase):
 
-    def test_signup(self):
+    def test_create_superuser(self):
         self.user = User.objects.create_superuser(
             name='anthony',
             email='email@email.com',
@@ -86,7 +86,7 @@ class AuthTestSuperUser(TestCase):
 
 class AuthTestOwnerUser(TestCase):
 
-    def test_signup(self):
+    def test_create_owneruser(self):
         self.user = User.objects.create_owneruser(
             name='anthony',
             email='email@email.com',
@@ -97,14 +97,13 @@ class AuthTestOwnerUser(TestCase):
 
 class AuthTestVendorUser(TestCase):
     
-    def test_signup(self):
+    def test_create_vendoruser(self):
         self.user = User.objects.create_vendoruser(
             name='anthony',
             email='email@email.com',
             password='my_password',
             phone="+254729363838",
-            contactperson="sam",
-            created_by='owner@gmail.com'
+            contactperson="sam"
             )
         self.user.save()
         self.assertEqual(self.user.is_Vendor, True)
@@ -115,8 +114,7 @@ class AuthTestVendorUser(TestCase):
                 name='anthony',
                 email='email@email.com',
                 password='my_password',
-                contactperson="sam",
-                created_by='owner@gmail.com'
+                contactperson="sam"
                 )
             self.user.save()
             
@@ -129,24 +127,9 @@ class AuthTestVendorUser(TestCase):
                 name='anthony',
                 email='email@email.com',
                 password='my_password',
-                phone="+254729363838",
-                created_by='owner@gmail.com'
+                phone="+254729363838"
                 )
             self.user.save()
             
         self.assertEqual(
             str(context.exception), "Vendor Account must have a contactperson.")
-
-    def test_required_field_createdby(self):
-        with self.assertRaises(TypeError) as context:
-            self.user = User.objects.create_vendoruser(
-                name='anthony',
-                email='email@email.com',
-                password='my_password',
-                phone="+254729363838",
-                contactperson="sam"
-                )
-            self.user.save()
-            
-        self.assertEqual(
-            str(context.exception), "Vendor Account must be created by the property owner.")

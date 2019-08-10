@@ -8,6 +8,17 @@ from django.contrib.auth.models import (
 
 from django.db import models
 
+class Utils:
+    @staticmethod
+    def validate_email(email):
+        check_email = User.objects.filter(email=email)
+        email_regex = r'^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$'
+        if not re.search(email_regex, email):
+            raise TypeError("Incorrect email format please try again")
+        if check_email.exists():
+            raise TypeError("This email has already been used to create a user")
+        return email
+    
 # Create your models here.
 
 class UserManager(BaseUserManager):
@@ -51,21 +62,16 @@ class UserManager(BaseUserManager):
 
         return user
     
-    def create_vendoruser(self,
-     name, email, password, phone=None,
-     contactperson=None, created_by=None):
+    def create_vendoruser(self, name, email, password, phone=None,contactperson=None):
         if phone is None:
             raise TypeError('Vendor Account must have a phone number.')
         if contactperson is None:
             raise TypeError('Vendor Account must have a contactperson.')
-        if created_by is None:
-            raise TypeError('Vendor Account must be created by the property owner.')
          
         user = self.create_user(name, email, password)
         user.is_vendor = True
         user.phone = phone
         user.contactperson = contactperson
-        user.created_by = created_by
         user.save()
 
         return user
@@ -83,7 +89,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_at      = models.DateTimeField(auto_now_add=True)
     phone           = models.CharField(default=False, max_length=255)
     contactperson   = models.CharField(default=False, max_length=255)
-    created_by      = models.EmailField(blank=True, null=True, unique=True)
 
     USERNAME_FIELD = 'email'
     
@@ -106,13 +111,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.is_vendor
     
 
-class Utils:
-    @staticmethod
-    def validate_email(email):
-        check_email = User.objects.filter(email=email)
-        email_regex = r'^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$'
-        if not re.search(email_regex, email):
-            raise TypeError("Incorrect email format please try again")
-        if check_email.exists():
-            raise TypeError("This email has already been used to create a user")
-        return email
+
