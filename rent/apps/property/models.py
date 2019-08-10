@@ -22,8 +22,6 @@ class PropertyFile(models.Model):
     picture   = models.ImageField(upload_to=get_image_path, blank=True)
     feed      = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='files')
     
-    def __str__(self):
-        return str(self.picture + ": " +self.feed)
 
 class Unit(models.Model):
     unit_number     = models.CharField(max_length=255)
