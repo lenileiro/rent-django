@@ -34,6 +34,11 @@ class Unit(models.Model):
     def __str__(self):
         return str(self.unit_number)
 
+    @property
+    def get_unit_number(self):
+        return self.unit_number
+
+
 class Tenant(models.Model):
     tenant_id      = models.IntegerField()
     first_name     = models.CharField(max_length=100)
@@ -41,3 +46,7 @@ class Tenant(models.Model):
 
     def __str__(self):
         return str(self.first_name)
+
+    @property
+    def get_first_name(self):
+        return self.first_name
