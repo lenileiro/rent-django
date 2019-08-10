@@ -103,7 +103,8 @@ class AuthTestVendorUser(TestCase):
             email='email@email.com',
             password='my_password',
             phone="+254729363838",
-            contactperson="sam"
+            contactperson="sam",
+            created_by='owner@gmail.com'
             )
         self.user.save()
         self.assertEqual(self.user.is_Vendor, True)
@@ -114,7 +115,8 @@ class AuthTestVendorUser(TestCase):
                 name='anthony',
                 email='email@email.com',
                 password='my_password',
-                contactperson="sam"
+                contactperson="sam",
+                created_by='owner@gmail.com'
                 )
             self.user.save()
             
@@ -128,8 +130,23 @@ class AuthTestVendorUser(TestCase):
                 email='email@email.com',
                 password='my_password',
                 phone="+254729363838",
+                created_by='owner@gmail.com'
                 )
             self.user.save()
             
         self.assertEqual(
             str(context.exception), "Vendor Account must have a contactperson.")
+
+    def test_required_field_createdby(self):
+        with self.assertRaises(TypeError) as context:
+            self.user = User.objects.create_vendoruser(
+                name='anthony',
+                email='email@email.com',
+                password='my_password',
+                phone="+254729363838",
+                contactperson="sam"
+                )
+            self.user.save()
+            
+        self.assertEqual(
+            str(context.exception), "Vendor Account must be created by the property owner.")
