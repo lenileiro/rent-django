@@ -30,6 +30,16 @@ Django - Django is a high-level Python Web framework that encourages rapid devel
 - [ ] Owner can get report of all Income and Expenses each month of all Units.
 - [ ] Owner can get report of Income and Expenses each month of each Units.
 
+### Install 
+
+``` bash
+    virtualenv venv -p python3
+```
+
+``` bash
+    source venv/bin/activate
+    export PYTHONDONTWRITEBYTECODE=1
+```
 
 ### Run
 
