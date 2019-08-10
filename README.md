@@ -1,5 +1,8 @@
 # tentant-django
 
+[![Build Status](https://travis-ci.org/lenileiro/rent-django.svg?branch=develop)](https://travis-ci.org/lenileiro/rent-django)
+[![Coverage Status](https://coveralls.io/repos/github/lenileiro/rent-django/badge.svg?branch=develop)](https://coveralls.io/github/lenileiro/rent-django?branch=develop)
+
 ## Project Overview
     - property management web application built using django
 
