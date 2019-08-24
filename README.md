@@ -52,7 +52,4 @@ Django - Django is a high-level Python Web framework.
 
 ## Developer
 [Anthony Leiro](https://github.com/lenileiro)
-
-## Credits 
-[CHUIFY LIMITED](http://chuify.com/)
     
